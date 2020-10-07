@@ -1,0 +1,4 @@
+*.pyc
+*.JSON
+*.swp
+__pycache__/
