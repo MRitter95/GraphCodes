@@ -1453,7 +1453,7 @@ def generate_line_graph(resMat, roundDepth = 3):
     linkMat = linkMat[~numpy.all(linkMat == 0, axis=1)]  
     
     newNum = linkMat.shape[0]/2 #number of resonators in the line graph
-    newResonators = numpy.zeros((newNum, 4))
+    newResonators = numpy.zeros((int(newNum), 4))
     
     
 
