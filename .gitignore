@@ -2,3 +2,5 @@
 *.JSON
 *.swp
 __pycache__/
+*.bak
+*.dxf
