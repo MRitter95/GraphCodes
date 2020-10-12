@@ -23,14 +23,14 @@ from scipy import signal
 from GeneralLayoutGenerator import GeneralLayout
 from GeneralLayoutGenerator import TreeResonators
 
-hyperbolicFolderPath = r'/Users/kollar2/Documents/HouckLab/HyperbolicPlanning/'
-euclideanFolderPath = r'/Users/kollar2/Documents/HouckLab/EuclideanLatticePlanning/'
-if not hyperbolicFolderPath in sys.path:
-    sys.path.append(hyperbolicFolderPath)
-if not euclideanFolderPath in sys.path:
-    sys.path.append(euclideanFolderPath)
+#hyperbolicFolderPath = r'/Users/kollar2/Documents/HouckLab/HyperbolicPlanning/'
+#euclideanFolderPath = r'/Users/kollar2/Documents/HouckLab/EuclideanLatticePlanning/'
+#if not hyperbolicFolderPath in sys.path:
+#    sys.path.append(hyperbolicFolderPath)
+#if not euclideanFolderPath in sys.path:
+#    sys.path.append(euclideanFolderPath)
 
-from EuclideanLayoutGenerator2 import UnitCell
+from UnitCell import UnitCell
 from EuclideanLayoutGenerator2 import EuclideanLayout
 
 from LayoutGenerator5 import PlanarLayout
@@ -210,25 +210,25 @@ from GeneralLayoutGenerator import decorate_layout
 #testLattice = GeneralLayout(resonators , modeType = test1.modeType, name =  'Peter-kagome')
 #
 #########decorated Euyclidean
-#test1 = EuclideanLayout(3,2,lattice_type = 'Huse', modeType = 'FW')
-#ucell = UnitCell('PeterChain_tail', side = 1)
-#resonators = test1.resonators
-#decorated_resonators = decorate_layout(resonators, ucell.resonators)
-#resonators = decorated_resonators
-#testLattice = GeneralLayout(resonators , modeType = test1.modeType, name =  'Peter-HPG')
+test1 = EuclideanLayout(3,2,lattice_type = 'Huse', modeType = 'FW')
+ucell = UnitCell('PeterChain_tail', side = 1)
+resonators = test1.resonators
+decorated_resonators = decorate_layout(resonators, ucell.resonators)
+resonators = decorated_resonators
+testLattice = GeneralLayout(resonators , modeType = test1.modeType, name =  'Peter-HPG')
 #
 #
 #######decorated hyperbolic
-test1 = PlanarLayout(gon = 7, vertex = 3, side =1, radius_method = 'lin')
-test1.populate(2, resonatorsOnly=False)
+#test1 = PlanarLayout(gon = 7, vertex = 3, side =1, radius_method = 'lin')
+#test1.populate(2, resonatorsOnly=False)
+##resonators = test1.get_all_resonators()
+##splitGraph = split_resonators(resonators)
+##resonators = splitGraph
+#ucell = UnitCell('PeterChain_tail', side = 1)
 #resonators = test1.get_all_resonators()
-#splitGraph = split_resonators(resonators)
-#resonators = splitGraph
-ucell = UnitCell('PeterChain_tail', side = 1)
-resonators = test1.get_all_resonators()
-decorated_resonators = decorate_layout(resonators, ucell.resonators)
-resonators = decorated_resonators
-testLattice = GeneralLayout(resonators , modeType = test1.modeType, name =  'decorated_hyperbolic')
+#decorated_resonators = decorate_layout(resonators, ucell.resonators)
+#resonators = decorated_resonators
+#testLattice = GeneralLayout(resonators , modeType = test1.modeType, name =  'decorated_hyperbolic')
 
 
     
