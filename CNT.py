@@ -29,9 +29,9 @@ import fractions
 
    
 from GraphCodes.GeneralLayoutGenerator import GeneralLayout
-from GraphCodes.GeneralLayoutGenerator import TreeResonators
+from GraphCodes.TreeResonators import TreeResonators
 
-from GraphCodes.EuclideanLayoutGenerator2 import UnitCell
+from GraphCodes.UnitCell import UnitCell
 from GraphCodes.EuclideanLayoutGenerator2 import EuclideanLayout
 
 from GraphCodes.LayoutGenerator5 import PlanarLayout
@@ -46,7 +46,7 @@ from GraphCodes.GeneralLayoutGenerator import shift_resonators
 
 
 
-#%% defaults
+# defaults
     
 #############
 #defaults
