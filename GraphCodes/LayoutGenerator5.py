@@ -163,11 +163,11 @@ class PlanarLayout(object):
             self.radius = self.side/numpy.cos(self.theta/2)/2
             
             #starting plaquette
-    #        self.x0 = numpy.asarray([numpy.sqrt(side),numpy.sqrt(side),-numpy.sqrt(side),-numpy.sqrt(side) ])
-    #        self.y0 = numpy.asarray([numpy.sqrt(side),-numpy.sqrt(side),numpy.sqrt(side),-numpy.sqrt(side) ])
-    #        self.edge_angles = numpy.arange(0, 2*numpy.pi, self.alpha) 
+            #self.x0 = numpy.asarray([numpy.sqrt(side),numpy.sqrt(side),-numpy.sqrt(side),-numpy.sqrt(side) ])
+            #self.y0 = numpy.asarray([numpy.sqrt(side),-numpy.sqrt(side),numpy.sqrt(side),-numpy.sqrt(side) ])
+            #self.edge_angles = numpy.arange(0, 2*numpy.pi, self.alpha) 
             self.edge_angles = numpy.arange(0, 2*numpy.pi, self.alpha) +self.alpha/2
-    #        self.diag_angles = self.edge_angles + self.alpha/2
+            #self.diag_angles = self.edge_angles + self.alpha/2
             self.diag_angles = self.edge_angles - self.alpha/2
             self.x0 = numpy.cos(self.diag_angles)*self.radius
             self.y0 = numpy.sin(self.diag_angles)*self.radius
@@ -212,8 +212,8 @@ class PlanarLayout(object):
         #make the JC-Hubbard lattice
         self.generate_semiduals() #need this so that various sizes are defined. Does not do big link computations
         if not resonatorsOnly:
-#            #make the JC-Hubbard lattice
-#            self.generate_semiduals()
+            #make the JC-Hubbard lattice
+            #self.generate_semiduals()
             
             if Hamiltonian:
                 self.generate_Hamiltonian()
@@ -351,19 +351,19 @@ class PlanarLayout(object):
             self.draw_all_azimuthals(ax, maxItter = maxItter, color = color, alpha = alpha, linewidth = linewidth, zorder = zorder)
         return
     
-#    def draw_resonator_end_points(self, ax, maxItter = -1, color = 'g', alpha = 1 , linewidth = 0.5):
-#        if maxItter > self.itter:
-#            raise ValueError, 'dont have this many itterations'
-#        elif maxItter <0:
-#            maxItter = self.itter
-#            
-#        #plot the azimuthal points
-#        xs = self.coords[:,0]
-#        ys = self.coords[:,1]
-#        pylab.sca(ax)
-#        pylab.scatter(xs, ys ,c =  color, s = 10, marker = 'o', edgecolors = 'k')
-#
-#        return
+    #def draw_resonator_end_points(self, ax, maxItter = -1, color = 'g', alpha = 1 , linewidth = 0.5):
+    #    if maxItter > self.itter:
+    #        raise ValueError, 'dont have this many itterations'
+    #    elif maxItter <0:
+    #        maxItter = self.itter
+    #        
+    #    #plot the azimuthal points
+    #    xs = self.coords[:,0]
+    #    ys = self.coords[:,1]
+    #    pylab.sca(ax)
+    #    pylab.scatter(xs, ys ,c =  color, s = 10, marker = 'o', edgecolors = 'k')
+
+    #    return
     def draw_resonator_end_points(self, ax, maxItter = -1, color = 'g', edgecolor = 'k',  marker = 'o' , size = 10, zorder = 1):
         if maxItter > self.itter:
             raise ValueError('dont have this many itterations')
@@ -403,9 +403,9 @@ class PlanarLayout(object):
             points = self.points[itteration]
             xs = self.radii[itteration]*numpy.cos(points)
             ys = self.radii[itteration]*numpy.sin(points)
-#            print itteration
-#            print xs
-#            print ys
+            #print itteration
+            #print xs
+            #print ys
             for az in range(0, len(points)):
                 x1 = xs[az]
                 y1 = ys[az]
@@ -415,7 +415,7 @@ class PlanarLayout(object):
                 ind = ind +1
             if itteration>=1:
                 #get the radial resonators
-#                [rxs_in, rys_in, rxs_out, rys_out] = self.get_radials(itteration)
+                #[rxs_in, rys_in, rxs_out, rys_out] = self.get_radials(itteration)
                 temp = numpy.asarray(self.get_radials(itteration))
                 [cols, rows] = temp.shape
                 resonators[ind: ind+rows, :] = numpy.transpose(temp)
@@ -431,7 +431,6 @@ class PlanarLayout(object):
         generate the next itteration of the resonator lattice
         '''
         self._itter_generate_full_general()
-
     
     def _itter_generate_full_general(self):
         '''
@@ -474,38 +473,38 @@ class PlanarLayout(object):
             
         numNewRadials = int(numpy.sum(outgoing_radials_at_each_vertex))
         numNewPoints = int(currentIndexP)
-#        print numNewRadials
-#        print numNewPoints
+        #print numNewRadials
+        #print numNewPoints
         
         
         #find the l ocations of the new azimuthal vertices
-#        self.points[newItter ] = 0 + numpy.arange(0,2*numpy.pi, 2*numpy.pi/numNewPoints) #don't want 2pi included
-#        self.points[newItter ] = -self.alpha/2 + numpy.arange(0,2*numpy.pi, 2*numpy.pi/numNewPoints)
+        #self.points[newItter ] = 0 + numpy.arange(0,2*numpy.pi, 2*numpy.pi/numNewPoints) #don't want 2pi included
+        #self.points[newItter ] = -self.alpha/2 + numpy.arange(0,2*numpy.pi, 2*numpy.pi/numNewPoints)
         if self.gon == 7:
-#            self.points[newItter ] = numpy.arange(0,2*numpy.pi, 2*numpy.pi/numNewPoints) - 0*self.alpha/2 + 0.25*(self.itter)**0.5*self.alpha/2.
+            #self.points[newItter ] = numpy.arange(0,2*numpy.pi, 2*numpy.pi/numNewPoints) - 0*self.alpha/2 + 0.25*(self.itter)**0.5*self.alpha/2.
             self.points[newItter ] = numpy.arange(0,numNewPoints,1)*2*numpy.pi/numNewPoints - 0*self.alpha/2 + 0.25*(self.itter)**0.5*self.alpha/2.
         elif self.gon == 5:
             if self.itter == 0:
-#                self.points[newItter ] = numpy.arange(0,2*numpy.pi, 2*numpy.pi/numNewPoints) + 0.
+                #self.points[newItter ] = numpy.arange(0,2*numpy.pi, 2*numpy.pi/numNewPoints) + 0.
                 self.points[newItter ] = numpy.arange(0,numNewPoints,1)*2*numpy.pi/numNewPoints + 0.
             else:
-#                self.points[newItter ] = numpy.arange(0,2*numpy.pi, 2*numpy.pi/numNewPoints) + 1.0*self.alpha/2.
-#                self.points[newItter ] = numpy.arange(0,2*numpy.pi, 2*numpy.pi/numNewPoints) - 0*self.alpha/2 + 0.25*(self.itter)**0.5*self.alpha/2.
+                #self.points[newItter ] = numpy.arange(0,2*numpy.pi, 2*numpy.pi/numNewPoints) + 1.0*self.alpha/2.
+                #self.points[newItter ] = numpy.arange(0,2*numpy.pi, 2*numpy.pi/numNewPoints) - 0*self.alpha/2 + 0.25*(self.itter)**0.5*self.alpha/2.
                 self.points[newItter ] = numpy.arange(0,numNewPoints,1)*2*numpy.pi/numNewPoints - 0*self.alpha/2 + 0.25*(self.itter)**0.5*self.alpha/2.
         elif self.gon == 3:  
-#            self.points[newItter ] =  numpy.arange(0,2*numpy.pi, 2*numpy.pi/numNewPoints) - self.alpha/2/1.5 #old as of 5-23-18
+            #self.points[newItter ] =  numpy.arange(0,2*numpy.pi, 2*numpy.pi/numNewPoints) - self.alpha/2/1.5 #old as of 5-23-18
             self.points[newItter ] =  numpy.arange(0,numNewPoints,1)*2*numpy.pi/numNewPoints - self.alpha/2/1.5 #old as of 5-23-18
         else:
-#            self.points[newItter ] =  numpy.arange(0,2*numpy.pi, 2*numpy.pi/numNewPoints) - self.alpha/2/1.5 #old as of 5-23-18
-#            self.points[newItter ] = numpy.arange(0,2*numpy.pi, 2*numpy.pi/numNewPoints) - 0*self.alpha/2 + 0.25*(self.itter)**0.5*self.alpha/2.
+            #self.points[newItter ] =  numpy.arange(0,2*numpy.pi, 2*numpy.pi/numNewPoints) - self.alpha/2/1.5 #old as of 5-23-18
+            #self.points[newItter ] = numpy.arange(0,2*numpy.pi, 2*numpy.pi/numNewPoints) - 0*self.alpha/2 + 0.25*(self.itter)**0.5*self.alpha/2.
             self.points[newItter ] = numpy.arange(0,numNewPoints,1)*2*numpy.pi/numNewPoints - 0*self.alpha/2 + 0.25*(self.itter)**0.5*self.alpha/2.
         if self.radius_method == 'lin':
             self.radii[newItter ] = self.radii[self.itter] + self.radius
         if self.radius_method == 'exp':
             self.radii[newItter ] = self.radius*numpy.exp(self.itter+1)
         if self.radius_method == 'Mattias':
-#            MattiasRadii = [1.0, 3, 4.5, 7.,8.]
-#            MattiasRadii = [1.0, 3.1, 4.8, 7.,8.]
+            #MattiasRadii = [1.0, 3, 4.5, 7.,8.]
+            #MattiasRadii = [1.0, 3.1, 4.8, 7.,8.]
             MattiasRadii = [1.0, 3.2, 5.1, 7.,8.]
             self.radii[newItter ] = self.radius*MattiasRadii[newItter]
         
@@ -523,19 +522,19 @@ class PlanarLayout(object):
         currentIndexR = 0
         for ind in range(0, numVertices):
             for rad in range(0, int(outgoing_radials_at_each_vertex[ind])):
-#                print ind
-#                print currentIndexR
-##                print currentIndexP
-#                print '\n'
+                #print ind
+                #print currentIndexR
+                #print currentIndexP
+                #print '\n'
                 #do each gon that only has a corner touching the previous itteration (mostly)
                 self.radials[newItter][currentIndexR, :] = numpy.asarray([self.points[self.itter][ind], self.points[newItter][currentIndexP]])
                 #ove to the next site
                 currentIndexP = numpy.mod(currentIndexP + (self.gon-2), numNewPoints)
-#                currentIndexP = currentIndexP + (self.gon-2)
+                #currentIndexP = currentIndexP + (self.gon-2)
                 currentIndexR = currentIndexR + 1
             
             #back up one site, because the next gon touches the previous itteration at a whole face, so we need a smaller step
-#            currentIndexP = numpy.mod(currentIndexP - 1, numNewPoints)
+            #currentIndexP = numpy.mod(currentIndexP - 1, numNewPoints)
             if ind == 0 and int(outgoing_radials_at_each_vertex[ind]) ==0:
                 #haven't actually stepped, so I don't want to remove anything
                 pass
@@ -608,11 +607,11 @@ class PlanarLayout(object):
         #the trickier radial links 
         for i in range(1,maxItter+1):
             self._radial_links_full_general(i)
-#            if self.gon > 3:
-##                self._radial_links_non_triangle(i)
-#                self._radial_links_triangle(i)
-#            else:
-#                self._radial_links_triangle(i)
+            #if self.gon > 3:
+                #self._radial_links_non_triangle(i)
+                #self._radial_links_triangle(i)
+            #else:
+                #self._radial_links_triangle(i)
                 
         self.get_all_semidual_points()
         return
@@ -636,11 +635,11 @@ class PlanarLayout(object):
                 incoming = len(numpy.where(numpy.mod(self.radials[itter][:,1],2*numpy.pi)==currentAngle)[0])
                 outgoing_radials_at_each_vertex[ind] = self.vertex-2-incoming
             incoming_radials_at_each_vertex  = self.vertex - outgoing_radials_at_each_vertex - 2
-#            print outgoing_radials_at_each_vertex
-#            print incoming_radials_at_each_vertex                  
+            #print outgoing_radials_at_each_vertex
+            #print incoming_radials_at_each_vertex                  
 
             #will skip any point where there is an incoming radial (these are cyclic coouplers. No diagonal terms for now)        
-#            skipped_points = len(numpy.where(incoming_radials_at_each_vertex != 0)[0]) 
+            #skipped_points = len(numpy.where(incoming_radials_at_each_vertex != 0)[0]) 
             skipped_maybe1 = numpy.where(incoming_radials_at_each_vertex != 0)[0] 
             skipped_maybe2 = numpy.where(outgoing_radials_at_each_vertex != 0)[0]
             skipped_sites= numpy.intersect1d(skipped_maybe1, skipped_maybe2)
@@ -648,7 +647,7 @@ class PlanarLayout(object):
             self.numAzLinks[itter] = numAz - skipped_points
             
             #allocate space
-#            self.SDlinks[itter] = numpy.zeros(((numAz-skipped_points)*2+ numRad*8, 4))
+            #self.SDlinks[itter] = numpy.zeros(((numAz-skipped_points)*2+ numRad*8, 4))
             self.SDlinks[itter] = numpy.zeros(((numAz-skipped_points)*2+ numRad*10, 4)) #temporary
             self.SDHWlinks[itter] = numpy.zeros(((numAz-skipped_points)*2+ numRad*10, 6))
             
@@ -657,7 +656,7 @@ class PlanarLayout(object):
             for vertex in range(0, numAz):
                 
                 next_vertex = numpy.mod(vertex+1, numAz)
-#                if incoming_radials_at_each_vertex[vertex] !=0 and incoming_radials_at_each_vertex[vertex] !=0:
+                #if incoming_radials_at_each_vertex[vertex] !=0 and incoming_radials_at_each_vertex[vertex] !=0:
                 if incoming_radials_at_each_vertex[vertex] !=0 and outgoing_radials_at_each_vertex[vertex] !=0:
                     pass
                 else:
@@ -682,7 +681,7 @@ class PlanarLayout(object):
         numAz_minus1 = len(self.points[i-1])
         numRad = self.radials[i].shape[0]
         numRad_minus1 = self.radials[i-1].shape[0]
-#        blankRads  = numpy.zeros((numRad*8, 4))
+        #blankRads  = numpy.zeros((numRad*8, 4))
         blankRads  = numpy.zeros((numRad*10, 4))   # temporary
         blankRadsHW  = numpy.zeros((numRad*10, 6))
         
@@ -720,12 +719,12 @@ class PlanarLayout(object):
                 
                 #loop over the outgoing radials
                 for rad in range(0, int(outgoing_radials_at_each_vertex[vertex])):
-#                    print currentIndexR
-#                    print 'rad = ' + str(rad)
+                    #print currentIndexR
+                    #print 'rad = ' + str(rad)
                     startInd = numpy.where(self.radials[i][currentIndexR,0] == self.points[i-1])[0][0]
                     stopInd = numpy.where(self.radials[i][currentIndexR,1] == self.points[i])[0][0]
                     if rad == 0:
-#                        print 'first radial'
+                        #print 'first radial'
                         #first outgoing radial. 
                         #connect to the previous azimuthal on theprevious ring
                         blankRads[currInd,:] = numpy.asarray([i-1, numpy.mod(startInd-1, numAz_minus1), i, numAz + currentIndexR])
@@ -738,7 +737,7 @@ class PlanarLayout(object):
                         currInd = currInd + 1
                         
                     else:
-#                        print 'not first radial'
+                        #print 'not first radial'
                         #not a first radial
                         #connect to the previous radial
                         blankRads[currInd,:] = numpy.asarray([i, numAz + numpy.mod(currentIndexR-1, numRad), i,numAz + currentIndexR])
@@ -751,7 +750,7 @@ class PlanarLayout(object):
                      
                         
                     if rad +1 == (int(outgoing_radials_at_each_vertex[vertex])):
-#                        print 'last radial'
+                        #print 'last radial'
                         #last radial
                         #connect to the next azimuthal on the previousring (not radials effectively start from half-integer sites )
                         blankRads[currInd,:] = numpy.asarray([i-1, numpy.mod(startInd, numAz_minus1), i, numAz + currentIndexR])
@@ -798,10 +797,10 @@ class PlanarLayout(object):
                 #there are incoming radial links, so I have to do something
                 
                 #loop over the incoming radials
-#                print int(incoming_radials_at_each_vertex[vertex])
+                #print int(incoming_radials_at_each_vertex[vertex])
                 for rad in range(0, int(incoming_radials_at_each_vertex[vertex])):
-#                    print currentIndexR
-#                    print 'rad = ' + str(rad)
+                    #print currentIndexR
+                    #print 'rad = ' + str(rad)
                     startInd = numpy.where(self.radials[i][currentIndexR,0] == self.points[i-1])[0][0]
                     stopInd = numpy.where(self.radials[i][currentIndexR,1] == self.points[i])[0][0]
                     if rad == 0:
@@ -872,7 +871,7 @@ class PlanarLayout(object):
         numAz = len(self.points[i])
         numAz_minus1 = len(self.points[i-1])
         numRad = self.radials[i].shape[0]
-#        blankRads  = numpy.zeros((numRad*8, 4))
+        #blankRads  = numpy.zeros((numRad*8, 4))
         blankRads  = numpy.zeros((numRad*10, 4))   # temporary
         
         #find the outgoing radial lines from the previous itteration
@@ -894,14 +893,14 @@ class PlanarLayout(object):
                 #there are outgoing radial links, so I have to do something
                 
                 #loop over the incoming radials
-#                print int(outgoing_radials_at_each_vertex[vertex])
+                #print int(outgoing_radials_at_each_vertex[vertex])
                 for rad in range(0, int(outgoing_radials_at_each_vertex[vertex])):
-#                    print currentIndexR
-#                    print 'rad = ' + str(rad)
+                    #print currentIndexR
+                    #print 'rad = ' + str(rad)
                     startInd = numpy.where(self.radials[i][currentIndexR,0] == self.points[i-1])[0][0]
                     stopInd = numpy.where(self.radials[i][currentIndexR,1] == self.points[i])[0][0]
                     if rad == 0:
-#                        print 'first radial'
+                        #print 'first radial'
                         #first outgoing radial. 
                         #connect to the previous azimuthal on the previous ring
                         blankRads[currInd,:] = numpy.asarray([i-1, numpy.mod(startInd-1, numAz_minus1), i, numAz + currentIndexR])
@@ -917,7 +916,7 @@ class PlanarLayout(object):
                         currInd = currInd + 1
                         
                     else:
-#                        print 'not first radial'
+                        #print 'not first radial'
                         #not a first radial
                         #connect to the previous radial
                         blankRads[currInd,:] = numpy.asarray([i, numAz + numpy.mod(currentIndexR-1, numRad), i,numAz + currentIndexR])
@@ -944,7 +943,7 @@ class PlanarLayout(object):
                     currInd = currInd + 1
                         
                     if rad +1 == (int(outgoing_radials_at_each_vertex[vertex])):
-#                        print 'last radial'
+                        #print 'last radial'
                         #last radial
                         #connect to the next azimuthal on the previousring (not radials effectively start from half-integer sites )
                         blankRads[currInd,:] = numpy.asarray([i-1, numpy.mod(startInd, numAz_minus1), i, numAz + currentIndexR])
@@ -1152,7 +1151,7 @@ class PlanarLayout(object):
             
         Hmat = self.get_sub_Hamiltonian(maxItter)
         
-#        Es, Psis = numpy.linalg.eig(Hmat)
+        #Es, Psis = numpy.linalg.eig(Hmat)
         Es, Psis = scipy.linalg.eigh(Hmat)
         Eorder = numpy.argsort(Es)
         
@@ -1301,9 +1300,9 @@ class PlanarLayout(object):
         mSizes = 100
         mColors = Amps
         
-    #    cm = pylab.cm.get_cmap('seismic')
+        #cm = pylab.cm.get_cmap('seismic')
         cm = pylab.cm.get_cmap(cmap)
-    #    cm = pylab.cm.get_cmap('RdBu')
+        #cm = pylab.cm.get_cmap('RdBu')
         
         
         vals = numpy.sort(mColors)
@@ -1442,7 +1441,7 @@ class PlanarLayout(object):
         ax.yaxis.set_visible(False)
         ax.set_aspect('equal')
         
-#        return plotPoints
+        #return plotPoints
         return mColors
     
     def generate_root_Hamiltonian(self, roundDepth = 3, t = 1, verbose = False, sparse = False, flags = 5):
@@ -1543,15 +1542,6 @@ class PlanarLayout(object):
         ax.yaxis.set_visible(False)
         ax.set_aspect('equal')
         return
-
-
-
-
-
-
-
-
-
     
 if __name__=="__main__":    
     

@@ -225,7 +225,7 @@ class UnitCell(object):
         
         self.side = side*1.0
         
-    #auto parse variants on Huse-type lattices
+        #auto parse variants on Huse-type lattices
         match = re.search(r'(\d*)(Huse)(\d*)(\_*)(\d*)', lattice_type)
         if match:
             #Huse type lattice of some sort
@@ -265,7 +265,6 @@ class UnitCell(object):
             #arbitrary lattice type
             self.type = lattice_type
             self._generate_arbitrary_cell(resonators, a1, a2)
-            
             
     ########
     #generator functions for unit cells
@@ -308,31 +307,31 @@ class UnitCell(object):
         
         
         #####manual population of the SD links
-#        #matrix to hold all the bonds
-#        #starting site, ending site, number units cells over in a1, number unit cells over in a2, initial end type, final end type
-#        oldlinks = numpy.zeros((self.numSites*4, 4)) #without orientation
-#        links = numpy.zeros((self.numSites*4, 6))   #with orientation
-#        #orientation defines by +x or +y is the +end 
-#        
-#        #fill in the links
-#        links[0,:] = [0,2,0,1,   1,0]
-#        links[1,:] = [0,1,0,0,   0,1]
-#        links[2,:] = [0,2,-1,1,  0,1]
-#        links[3,:] = [0,1,0,1,   1,0]
-#        
-#        links[4,:] = [1,2,0,0,   0,0]
-#        links[5,:] = [1,0,0,0,   1,0]
-#        links[6,:] = [1,2,-1,1,  1,1]
-#        links[7,:] = [1,0,0,-1,  0,1]
-#        
-#        links[8,:] = [2,1,0,0,   0,0]
-#        links[9,:] = [2,0,0,-1,  0,1]
-#        links[10,:] =[2,0,1,-1,  1,0]
-#        links[11,:] =[2,1,1,-1,  1,1]
-#        
-#        oldlinks = links[:,0:4]
-#        self.SDlinks = oldlinks
-#        self.SDHWlinks = links
+        ##matrix to hold all the bonds
+        ##starting site, ending site, number units cells over in a1, number unit cells over in a2, initial end type, final end type
+        #oldlinks = numpy.zeros((self.numSites*4, 4)) #without orientation
+        #links = numpy.zeros((self.numSites*4, 6))   #with orientation
+        ##orientation defines by +x or +y is the +end 
+        #
+        ##fill in the links
+        #links[0,:] = [0,2,0,1,   1,0]
+        #links[1,:] = [0,1,0,0,   0,1]
+        #links[2,:] = [0,2,-1,1,  0,1]
+        #links[3,:] = [0,1,0,1,   1,0]
+        #
+        #links[4,:] = [1,2,0,0,   0,0]
+        #links[5,:] = [1,0,0,0,   1,0]
+        #links[6,:] = [1,2,-1,1,  1,1]
+        #links[7,:] = [1,0,0,-1,  0,1]
+        #
+        #links[8,:] = [2,1,0,0,   0,0]
+        #links[9,:] = [2,0,0,-1,  0,1]
+        #links[10,:] =[2,0,1,-1,  1,0]
+        #links[11,:] =[2,1,1,-1,  1,1]
+        #
+        #oldlinks = links[:,0:4]
+        #self.SDlinks = oldlinks
+        #self.SDHWlinks = links
         
         #####auto population of the SD links
         self._auto_generate_SDlinks()
@@ -415,76 +414,76 @@ class UnitCell(object):
         
         
         ######manual population of the SD links
-#        #matrix to hold all the bonds
-#        #starting site, ending site, number units cells over in a1, number unit cells over in a2, initial end type, final end type
-#        oldlinks = numpy.zeros((self.numSites*4, 4)) #without orientation
-#        links = numpy.zeros((self.numSites*4, 6))   #with orientation
-#        #orientation defines by +x or +y is the +end 
-#        
-#        #fill in the links
-#        links[0,:] = [0 , 6, 0,1,  1,0]
-#        links[1,:] = [0 , 6, -1,1, 0,1]
-#        links[2,:] = [0 , 5, 0,1,  1,0]
-#        links[3,:] = [0 , 1, 0,0,  0,1]
-#        
-#        links[4,:] = [1,2, 0,0,    0,1]
-#        links[5,:] = [1,0, 0,0,    1,0]
-#        links[6,:] = [1,7, 0,0,    0,0]
-#        links[7,:] = [1,6, -1,1,   1,1]
-#        
-#        links[8,:] = [2,1, 0,0,    1,0]
-#        links[9,:] = [2,7, 0,0,    1,0]
-#        links[10,:] = [2,3, 0,0,   0,1]
-#        links[11,:] = [2,8, -1,0,  0,1]
-#        
-#        links[12,:] = [3,2, 0,0,   1,0]
-#        links[13,:] = [3,4, 0,0,   0,1]
-#        links[14,:] = [3,10, 0,0,  0,0]
-#        links[15,:] = [3,8, -1,0,  1,1]
-#        
-#        links[16,:] = [4,3, 0,0,   1,0]
-#        links[17,:] = [4,10, 0,0,  1,0]
-#        links[18,:] = [4,5, 0,0,   0,1]
-#        links[19,:] = [4,11,-1,0,  0,1]
-#        
-#        links[20,:] = [5,4, 0,0,   1,0]
-#        links[21,:] = [5,6, 0,0,   0,0]
-#        links[22,:] = [5,11,-1,0,  1,1]
-#        links[23,:] = [5,0, 0,-1,  0,1]
-#        
-#        links[24,:] = [6,5, 0,0,   0,0]
-#        links[25,:] = [6,0, 0,-1,  0,1]
-#        links[26,:] = [6,1, 1,-1,  1,1]
-#        links[27,:] = [6,0, 1,-1,  1,0]
-#        
-#        links[28,:] = [7,1, 0,0,   0,0]
-#        links[29,:] = [7,2, 0,0,   0,1]
-#        links[30,:] = [7,9, 0,0,   1,1]
-#        links[31,:] = [7,8, 0,0,   1,0]
-#        
-#        links[32,:] = [8,7, 0,0,   0,1]
-#        links[33,:] = [8,9, 0,0,   0,1]
-#        links[34,:] = [8,2, 1,0,   1,0]
-#        links[35,:] = [8,3, 1,0,   1,1]
-#        
-#        links[36,:] = [9,7, 0,0,   1,1]
-#        links[37,:] = [9,8, 0,0,   1,0]
-#        links[38,:] = [9,10, 0,0,  0,1]
-#        links[39,:] = [9,11, 0,0,  0,0]
-#        
-#        links[40,:] = [10,9, 0,0,  1,0]
-#        links[41,:] = [10,11,0,0,  1,0]
-#        links[42,:] = [10,3, 0,0,  0,0]
-#        links[43,:] = [10,4, 0,0,  0,1]
-#        
-#        links[44,:] = [11,9, 0,0,  0,0]
-#        links[45,:] = [11,10,0,0,  0,1]
-#        links[46,:] = [11,4, 1,0,  1,0]
-#        links[47,:] = [11,5, 1,0,  1,1]
-#        
-#        oldlinks = links[:,0:4]
-#        self.SDlinks = oldlinks
-#        self.SDHWlinks = links
+        ##matrix to hold all the bonds
+        ##starting site, ending site, number units cells over in a1, number unit cells over in a2, initial end type, final end type
+        #oldlinks = numpy.zeros((self.numSites*4, 4)) #without orientation
+        #links = numpy.zeros((self.numSites*4, 6))   #with orientation
+        ##orientation defines by +x or +y is the +end 
+        #
+        ##fill in the links
+        #links[0,:] = [0 , 6, 0,1,  1,0]
+        #links[1,:] = [0 , 6, -1,1, 0,1]
+        #links[2,:] = [0 , 5, 0,1,  1,0]
+        #links[3,:] = [0 , 1, 0,0,  0,1]
+        #
+        #links[4,:] = [1,2, 0,0,    0,1]
+        #links[5,:] = [1,0, 0,0,    1,0]
+        #links[6,:] = [1,7, 0,0,    0,0]
+        #links[7,:] = [1,6, -1,1,   1,1]
+        #
+        #links[8,:] = [2,1, 0,0,    1,0]
+        #links[9,:] = [2,7, 0,0,    1,0]
+        #links[10,:] = [2,3, 0,0,   0,1]
+        #links[11,:] = [2,8, -1,0,  0,1]
+        #
+        #links[12,:] = [3,2, 0,0,   1,0]
+        #links[13,:] = [3,4, 0,0,   0,1]
+        #links[14,:] = [3,10, 0,0,  0,0]
+        #links[15,:] = [3,8, -1,0,  1,1]
+        #
+        #links[16,:] = [4,3, 0,0,   1,0]
+        #links[17,:] = [4,10, 0,0,  1,0]
+        #links[18,:] = [4,5, 0,0,   0,1]
+        #links[19,:] = [4,11,-1,0,  0,1]
+        #
+        #links[20,:] = [5,4, 0,0,   1,0]
+        #links[21,:] = [5,6, 0,0,   0,0]
+        #links[22,:] = [5,11,-1,0,  1,1]
+        #links[23,:] = [5,0, 0,-1,  0,1]
+        #
+        #links[24,:] = [6,5, 0,0,   0,0]
+        #links[25,:] = [6,0, 0,-1,  0,1]
+        #links[26,:] = [6,1, 1,-1,  1,1]
+        #links[27,:] = [6,0, 1,-1,  1,0]
+        #
+        #links[28,:] = [7,1, 0,0,   0,0]
+        #links[29,:] = [7,2, 0,0,   0,1]
+        #links[30,:] = [7,9, 0,0,   1,1]
+        #links[31,:] = [7,8, 0,0,   1,0]
+        #
+        #links[32,:] = [8,7, 0,0,   0,1]
+        #links[33,:] = [8,9, 0,0,   0,1]
+        #links[34,:] = [8,2, 1,0,   1,0]
+        #links[35,:] = [8,3, 1,0,   1,1]
+        #
+        #links[36,:] = [9,7, 0,0,   1,1]
+        #links[37,:] = [9,8, 0,0,   1,0]
+        #links[38,:] = [9,10, 0,0,  0,1]
+        #links[39,:] = [9,11, 0,0,  0,0]
+        #
+        #links[40,:] = [10,9, 0,0,  1,0]
+        #links[41,:] = [10,11,0,0,  1,0]
+        #links[42,:] = [10,3, 0,0,  0,0]
+        #links[43,:] = [10,4, 0,0,  0,1]
+        #
+        #links[44,:] = [11,9, 0,0,  0,0]
+        #links[45,:] = [11,10,0,0,  0,1]
+        #links[46,:] = [11,4, 1,0,  1,0]
+        #links[47,:] = [11,5, 1,0,  1,1]
+        #
+        #oldlinks = links[:,0:4]
+        #self.SDlinks = oldlinks
+        #self.SDHWlinks = links
         
         #####auto population of the SD links
         self._auto_generate_SDlinks()
@@ -674,7 +673,7 @@ class UnitCell(object):
         '''
         #set up the sites
         self.numSites = 2
-#        self.numSites = 4
+        #self.numSites = 4
         xs = numpy.zeros(self.numSites)
         ys = numpy.zeros(self.numSites)
         
@@ -696,10 +695,10 @@ class UnitCell(object):
         self.resonators[0,:] = [0, 0, 0, a]
         self.resonators[1,:] = [a, 0, 0, 0]
         
-#        self.resonators[0,:] = [0, 0, 0, a/2.]
-#        self.resonators[1,:] = [0, 0, a/2., 0]
-#        self.resonators[2,:] = [-a/2., 0, 0, 0]
-#        self.resonators[3,:] = [0, -a/2., 0, 0]
+        #self.resonators[0,:] = [0, 0, 0, a/2.]
+        #self.resonators[1,:] = [0, 0, a/2., 0]
+        #self.resonators[2,:] = [-a/2., 0, 0, 0]
+        #self.resonators[3,:] = [0, -a/2., 0, 0]
         
         self.coords = self.get_coords(self.resonators)
         
@@ -780,17 +779,17 @@ class UnitCell(object):
         self.resonators[9,:] = [ a/2,  2*dy,a/4, 0]
         self.resonators[10,:] = [-a/4, 0, -a/2, -2*dy]
         self.resonators[11,:] = [a/4, 0, a/2, -2*dy]
-#        self.resonators[7,:] = [-a/2, 2*dy, -a/2,  0]
-#        self.resonators[8,:] = [a/2,0, -a/2,  0]
-#        self.resonators[9,:] = [ a/2,  2*dy,a/2, 0]
-#        self.resonators[10,:] = [-a/2, 0, -a/2, -2*dy]
-#        self.resonators[11,:] = [a/2, 0, a/2, -2*dy]
+        #self.resonators[7,:] = [-a/2, 2*dy, -a/2,  0]
+        #self.resonators[8,:] = [a/2,0, -a/2,  0]
+        #self.resonators[9,:] = [ a/2,  2*dy,a/2, 0]
+        #self.resonators[10,:] = [-a/2, 0, -a/2, -2*dy]
+        #self.resonators[11,:] = [a/2, 0, a/2, -2*dy]
         
         self.coords = self.get_coords(self.resonators)
         
         #set up the positions of the sites of the effective lattice
-#        xs = numpy.asarray([-dx, -dx,-dx,-dx,-dx,-dx, 0, -xcorr, +xcorr, 0, -xcorr, +xcorr])
-#        ys = numpy.asarray([5*dy, 3*dy, dy, -dy, -3*dy, -5*dy, -6*dy, 2*dy, 2*dy, 0, -2*dy, -2*dy])
+        #xs = numpy.asarray([-dx, -dx,-dx,-dx,-dx,-dx, 0, -xcorr, +xcorr, 0, -xcorr, +xcorr])
+        #ys = numpy.asarray([5*dy, 3*dy, dy, -dy, -3*dy, -5*dy, -6*dy, 2*dy, 2*dy, 0, -2*dy, -2*dy])
         xs = numpy.zeros(self.numSites)
         ys = numpy.zeros(self.numSites)
         for rind in range(0, self.resonators.shape[0]):
@@ -818,13 +817,13 @@ class UnitCell(object):
                 badLinks.append(lind)
             if site1 ==8 and site2 ==9:
                 badLinks.append(lind)
-#        #mark the bad rows
-#        self.SDHWlinks[badLinks,:] = -4
-#        #excise the bad rows
-#        self.SDHWlinks = self.SDHWlinks[~numpy.all(self.SDHWlinks == -4, axis=1)] 
-#        #also store the old link format
-#        oldlinks = self.SDHWlinks[:,0:4]
-#        self.SDlinks = oldlinks
+        #mark the bad rows
+        #self.SDHWlinks[badLinks,:] = -4
+        #excise the bad rows
+        #self.SDHWlinks = self.SDHWlinks[~numpy.all(self.SDHWlinks == -4, axis=1)] 
+        #also store the old link format
+        #oldlinks = self.SDHWlinks[:,0:4]
+        #self.SDlinks = oldlinks
         
         
         #make note of which resonator you need in order to close the unit cell
@@ -895,8 +894,8 @@ class UnitCell(object):
         self.coords = self.get_coords(self.resonators)
         
         #set up the positions of the sites of the effective lattice
-#        xs = numpy.asarray([-dx, -dx,-dx,-dx,-dx,-dx, 0, -xcorr, +xcorr, 0, -xcorr, +xcorr])
-#        ys = numpy.asarray([5*dy, 3*dy, dy, -dy, -3*dy, -5*dy, -6*dy, 2*dy, 2*dy, 0, -2*dy, -2*dy])
+        #xs = numpy.asarray([-dx, -dx,-dx,-dx,-dx,-dx, 0, -xcorr, +xcorr, 0, -xcorr, +xcorr])
+        #ys = numpy.asarray([5*dy, 3*dy, dy, -dy, -3*dy, -5*dy, -6*dy, 2*dy, 2*dy, 0, -2*dy, -2*dy])
         xs = numpy.zeros(self.numSites)
         ys = numpy.zeros(self.numSites)
         for rind in range(0, self.resonators.shape[0]):
@@ -924,13 +923,13 @@ class UnitCell(object):
                 badLinks.append(lind)
             if site1 ==8 and site2 ==9:
                 badLinks.append(lind)
-#        #mark the bad rows
-#        self.SDHWlinks[badLinks,:] = -4
-#        #excise the bad rows
-#        self.SDHWlinks = self.SDHWlinks[~numpy.all(self.SDHWlinks == -4, axis=1)] 
-#        #also store the old link format
-#        oldlinks = self.SDHWlinks[:,0:4]
-#        self.SDlinks = oldlinks
+        #mark the bad rows
+        #self.SDHWlinks[badLinks,:] = -4
+        #excise the bad rows
+        #self.SDHWlinks = self.SDHWlinks[~numpy.all(self.SDHWlinks == -4, axis=1)] 
+        #also store the old link format
+        #oldlinks = self.SDHWlinks[:,0:4]
+        #self.SDlinks = oldlinks
         
         
         #make note of which resonator you need in order to close the unit cell
@@ -995,8 +994,8 @@ class UnitCell(object):
         self.coords = self.get_coords(self.resonators)
         
         #set up the positions of the sites of the effective lattice
-#        xs = numpy.asarray([-dx, -dx,-dx,-dx,-dx,-dx, 0, -xcorr, +xcorr, 0, -xcorr, +xcorr])
-#        ys = numpy.asarray([5*dy, 3*dy, dy, -dy, -3*dy, -5*dy, -6*dy, 2*dy, 2*dy, 0, -2*dy, -2*dy])
+        #xs = numpy.asarray([-dx, -dx,-dx,-dx,-dx,-dx, 0, -xcorr, +xcorr, 0, -xcorr, +xcorr])
+        #ys = numpy.asarray([5*dy, 3*dy, dy, -dy, -3*dy, -5*dy, -6*dy, 2*dy, 2*dy, 0, -2*dy, -2*dy])
         xs = numpy.zeros(self.numSites)
         ys = numpy.zeros(self.numSites)
         for rind in range(0, self.resonators.shape[0]):
@@ -1006,9 +1005,9 @@ class UnitCell(object):
         self.SDx = xs
         self.SDy = ys
         
-#        #alternate drawing
-#        self.SDx[7] = -a/15
-#        self.SDx[8] = a/15
+        #alternate drawing
+        #self.SDx[7] = -a/15
+        #self.SDx[8] = a/15
         
         
         #####auto population of the SD links
@@ -1148,7 +1147,7 @@ class UnitCell(object):
         if resonators == '':
             raise ValueError('not a built-in unit cell type and no resonators given')
         else:
-#            print resonators.shape
+            #print resonators.shape
             if resonators.shape[1] != 4:
                 raise ValueError('provided resonators are not the right shape')
             
@@ -1225,7 +1224,7 @@ class UnitCell(object):
         coords_overcomplete =  numpy.concatenate((resonators[:,0], resonators[:,2])) + 1j * numpy.concatenate((resonators[:,1], resonators[:,3]))
         
         coords_complex = numpy.unique(numpy.round(coords_overcomplete, roundDepth))#this seems to be the one place where the rounding sticks
-#        coords_complex = numpy.unique(numpy.round(coords_overcomplete, 5))
+        #coords_complex = numpy.unique(numpy.round(coords_overcomplete, 5))
     
         coords = numpy.zeros((coords_complex.shape[0],2))
         coords[:,0] = numpy.real(coords_complex)
@@ -1355,7 +1354,7 @@ class UnitCell(object):
 
         #put opposite sign on other side
         mColors_end[1::2] = -mColors
-#        mColors_end[1::2] = 5
+        #mColors_end[1::2] = 5
         
         cm = pylab.cm.get_cmap(cmap)
         
@@ -1365,7 +1364,7 @@ class UnitCell(object):
         ys = plotPoints[:,1]
         
         pylab.sca(ax)
-#        pylab.scatter(xs, ys,c =  mColors_end, s = mSizes, marker = 'o', edgecolors = 'k', cmap = cm, vmin = -1, vmax = 1, zorder = zorder)
+        #pylab.scatter(xs, ys,c =  mColors_end, s = mSizes, marker = 'o', edgecolors = 'k', cmap = cm, vmin = -1, vmax = 1, zorder = zorder)
         pylab.scatter(xs, ys,c =  mColors_end, s = mSizes, marker = 'o', edgecolors = 'k', cmap = cm, vmin = -1.5, vmax = 2.0, zorder = zorder)
         if colorbar:
             cbar = pylab.colorbar(fraction=0.046, pad=0.04)
@@ -1403,7 +1402,7 @@ class UnitCell(object):
         elif self.type == 'square':
             self.SDHWlinks = numpy.zeros((self.numSites*6,6))
         else:
-#            self.SDHWlinks = numpy.zeros((self.numSites*4,6))
+            #self.SDHWlinks = numpy.zeros((self.numSites*4,6))
             self.SDHWlinks = numpy.zeros((self.numSites*8,6)) #temporary hack to allow some line graph games
         
         lind = 0
@@ -1614,28 +1613,28 @@ class UnitCell(object):
                 pylab.plot(bandCut[ind,:], color = colorlist[colorInd] , marker = '.', markersize = '5', linestyle = '', zorder = zorder)
             else:
                 pylab.plot(bandCut[ind,:], color = colorlist[colorInd] , linewidth = linewidth, linestyle = '-', zorder = zorder)
-#            pylab.plot(bandCut[ind,:], '.')
+            #pylab.plot(bandCut[ind,:], '.')
         pylab.title('some momentum cut')
         pylab.ylabel('Energy')
         pylab.xlabel('k_something')
     
-#    def plot_band_cut(self, ax, bandCut, colorlist = '', zorder = 1, dots = False, linewidth = 2.5):
-#        ''' '''
-#        if colorlist == '':
-#            colorlist = ['firebrick', 'dodgerblue', 'blueviolet', 'mediumblue', 'goldenrod', 'cornflowerblue']
-#        
-#        pylab.sca(ax)
-#        
-#        for ind in range(0,self.numSites):
-#            colorInd = numpy.mod(ind, len(colorlist))
-#            if dots:
-#                pylab.plot(bandCut[ind,:], color = colorlist[colorInd] , marker = '.', markersize = '5', linestyle = '', zorder = zorder)
-#            else:
-#                pylab.plot(bandCut[ind,:], color = colorlist[colorInd] , linewidth = linewidth, linestyle = '-', zorder = zorder)
-##            pylab.plot(bandCut[ind,:], '.')
-#        pylab.title('some momentum cut')
-#        pylab.ylabel('Energy')
-#        pylab.xlabel('k_something')
+    #def plot_band_cut(self, ax, bandCut, colorlist = '', zorder = 1, dots = False, linewidth = 2.5):
+    #    ''' '''
+    #    if colorlist == '':
+    #        colorlist = ['firebrick', 'dodgerblue', 'blueviolet', 'mediumblue', 'goldenrod', 'cornflowerblue']
+    #    
+    #    pylab.sca(ax)
+    #    
+    #    for ind in range(0,self.numSites):
+    #        colorInd = numpy.mod(ind, len(colorlist))
+    #        if dots:
+    #            pylab.plot(bandCut[ind,:], color = colorlist[colorInd] , marker = '.', markersize = '5', linestyle = '', zorder = zorder)
+    #        else:
+    #            pylab.plot(bandCut[ind,:], color = colorlist[colorInd] , linewidth = linewidth, linestyle = '-', zorder = zorder)
+    #         pylab.plot(bandCut[ind,:], '.')
+    #    pylab.title('some momentum cut')
+    #    pylab.ylabel('Energy')
+    #    pylab.xlabel('k_something')
     
     def plot_bloch_wave(self, state_vect, ax, title = 'state weight', colorbar = False, plot_links = False, cmap = 'Wistia', zorder = 1):
         '''
@@ -1652,7 +1651,7 @@ class UnitCell(object):
         outOfRange = numpy.where(mColors< -0.5)[0]
         mColors[outOfRange] = mColors[outOfRange] + 2
         
-#        print mColors
+        #print mColors
         
         cm = pylab.cm.get_cmap(cmap)
         
@@ -1734,7 +1733,7 @@ class UnitCell(object):
         ax.yaxis.set_visible(False)
         ax.set_aspect('equal')
         
-#        return plotPoints
+        #return plotPoints
         return mColors
     
     def split_cell(self, splitIn = 2, name = 'TBD'):
@@ -1778,16 +1777,16 @@ class UnitCell(object):
             targetPol = int(link[5])
             
             if (deltaA1,deltaA2) == (-1,1):
-#                print 'skipping -1,1'
+                #print 'skipping -1,1'
                 pass
             elif (deltaA1,deltaA2) == (-1,0):
-#                print 'skipping -1,0'
+                #print 'skipping -1,0'
                 pass
             elif (deltaA1,deltaA2) == (-1,-1):
-#                print 'skipping -1,-1'
+                #print 'skipping -1,-1'
                 pass
             elif (deltaA1,deltaA2) == (0,-1):
-#                print 'skipping 0,-1'
+                #print 'skipping 0,-1'
                 pass
             else:
                 if (deltaA1,deltaA2) == (0,0) and  startInd > targetInd:
@@ -1816,9 +1815,6 @@ class UnitCell(object):
             newCell = UnitCell(name, resonators = newResonators, a1 = self.a1, a2 = self.a2)
             return newCell
     
-    
-    
-        
     def find_root_cell(self, roundDepth = 3):
         '''determine the unit cell for the root graph of the layout. The ends of the resonators is too big a set.
         So, it has to be narrowed down and the redundancies lumped together.
@@ -1839,7 +1835,7 @@ class UnitCell(object):
             vec1 = numpy.round(self.a1[0] + 1j*self.a1[1], roundDepth)
             vec2 = numpy.round(self.a2[0] + 1j*self.a2[1], roundDepth)
             shiftedCoords = svec_all + shift1*(vec1) + shift2*(vec2)
-#            redundancies = numpy.where(numpy.round(site,roundDepth) == numpy.round(shiftedCoords,roundDepth))[0]
+            #redundancies = numpy.where(numpy.round(site,roundDepth) == numpy.round(shiftedCoords,roundDepth))[0]
             redundancies = numpy.where(numpy.isclose(site,shiftedCoords, atol = 2*10**(-roundDepth)))[0] #rounding is causing issues. Hopefully this is better
             return redundancies
             
@@ -1877,7 +1873,7 @@ class UnitCell(object):
                 minCellInds = numpy.concatenate((minCellInds, [cind]))
                 
         minCellInds = numpy.asarray(minCellInds, dtype = 'int')
-#        minCellInds = minCellInds.astype('int')
+        #minCellInds = minCellInds.astype('int')
         
         #store the results
         self.rootCellInds = minCellInds
@@ -1918,7 +1914,7 @@ class UnitCell(object):
         zmat = numpy.zeros((resonators.shape[0],2))*(1 + 1j)
         zmat[:,0] = resonators[:,0] + 1j*resonators[:,1]
         zmat[:,1] = resonators[:,2] + 1j*resonators[:,3]
-    #    print zmat
+        #print zmat
         
         self.rootLinks = numpy.zeros((self.resonators.shape[0]*2,4))
     
@@ -1928,7 +1924,7 @@ class UnitCell(object):
             vec1 = numpy.round(self.a1[0] + 1j*self.a1[1], roundDepth)
             vec2 = numpy.round(self.a2[0] + 1j*self.a2[1], roundDepth)
             shiftedCoords = svec + shift1*(vec1) + shift2*(vec2)
-#            matches = numpy.where(numpy.round(site,roundDepth) == numpy.round(shiftedCoords,roundDepth))[0]
+            #matches = numpy.where(numpy.round(site,roundDepth) == numpy.round(shiftedCoords,roundDepth))[0]
             matches = numpy.where(numpy.isclose(site,shiftedCoords, atol = 2*10**(-roundDepth)))[0] #rounding is causing issues. Hopefully this is better
             if len(matches)>0:
                 return True
@@ -2003,8 +1999,8 @@ class UnitCell(object):
             lind = lind+2
 
         
-#        #remove blank links (needed for some types of arbitrary cells)
-#        self.rootlinks = self.rootlinks[~numpy.all(self.rootlinkss == 0, axis=1)] 
+        #remove blank links (needed for some types of arbitrary cells)
+        #self.rootlinks = self.rootlinks[~numpy.all(self.rootlinkss == 0, axis=1)] 
         
         return
     
@@ -2071,10 +2067,10 @@ class UnitCell(object):
                     if targetInd in redundancyDict[cind]:
                         targetClass = cind
                         
-    #        #update the source and target #ACTUALY. This appears to be bad. I want to direction of the 
+            #update the source and target #ACTUALY. This appears to be bad. I want to direction of the 
             #actual bond, and the knowledge of which two classes of points I'm going between
-    #        source = svec_all[sourceClass]
-    #        target = svec_all[targetClass]
+            #source = svec_all[sourceClass]
+            #target = svec_all[targetClass]
             
             #absolute corrdiates of origin site
             x0 = numpy.real(source)
@@ -2119,7 +2115,7 @@ class UnitCell(object):
             except:
                 self.find_root_cell()
             minCellInds = self.rootCellInds
-#            redundancyDict = self.rootVertexRedundnacy
+            #redundancyDict = self.rootVertexRedundnacy
                 
             numLayoutSites = len(minCellInds)
             
@@ -2157,7 +2153,7 @@ class UnitCell(object):
         outOfRange = numpy.where(mColors< -0.5)[0]
         mColors[outOfRange] = mColors[outOfRange] + 2
         
-#        print mColors
+        #print mColors
         
         cm = pylab.cm.get_cmap(cmap)
         
@@ -2177,8 +2173,6 @@ class UnitCell(object):
         ax.set_aspect('equal')
         return
         
-        
-
 class EuclideanLayout(object):
     def __init__(self, xcells = 4, ycells = 4, lattice_type = 'Huse', side = 1, file_path = '', modeType = 'FW', resonatorsOnly=False, initialCell = ''):
         '''
@@ -2510,9 +2504,8 @@ class EuclideanLayout(object):
         
             self.extraSDHWlinks = numpy.zeros((xsize*ysize*self.unitcell.numSites*6, 4))
         else:
-#            self.SDHWlinks = numpy.zeros((xsize*ysize*self.unitcell.numSites*4, 4))
-#            
-#            self.extraSDHWlinks = numpy.zeros((xsize*ysize*self.unitcell.numSites*4, 4))
+            #self.SDHWlinks = numpy.zeros((xsize*ysize*self.unitcell.numSites*4, 4))
+            #self.extraSDHWlinks = numpy.zeros((xsize*ysize*self.unitcell.numSites*4, 4))
             
             #temporary hack to allow playing with larger coordination numbers. Otherwise
             #there was not enough space allocated
@@ -2551,20 +2544,20 @@ class EuclideanLayout(object):
                 for link in range(0, self.unitcell.SDlinks.shape[0]):
                     [startSite, targetSite, deltaA1, deltaA2, startEnd, targetEnd]  = self.unitcell.SDHWlinks[link,:]
                     targetCell = [indx + deltaA1, indy + deltaA2]
-#                    print [startSite, targetSite, deltaA1, deltaA2, startEnd, targetEnd]
-#                    print currCell
-#                    print targetCell
+                    #print [startSite, targetSite, deltaA1, deltaA2, startEnd, targetEnd]
+                    #print currCell
+                    #print targetCell
                     if (targetCell[0]<0) or (targetCell[1]<0) or (targetCell[0]>xsize-1) or (targetCell[1]>ysize-1):
                         #this cell is outside of the simulation. Leave it
-#                        print 'passing by'
+                        #print 'passing by'
                         pass
                     else:
                         startInd = startSite + currCell[0]*self.unitcell.numSites*ysize + currCell[1]*self.unitcell.numSites
                         targetInd = targetSite + targetCell[0]*self.unitcell.numSites*ysize + targetCell[1]*self.unitcell.numSites
                         self.SDHWlinks[latticelinkInd,:] = [startInd, targetInd, startEnd, targetEnd]
-#                        print [startInd, targetInd, startEnd, targetEnd]
+                        #print [startInd, targetInd, startEnd, targetEnd]
                         latticelinkInd = latticelinkInd +1  
-#                    print '   '
+                    #print '   '
         
         #fix the edge
         self._fix_SDedge()
@@ -2772,17 +2765,17 @@ class EuclideanLayout(object):
         '''
         return [self.Es, self.Psis, self.Eorder]
     
-#    def get_SDindex(self,num, itt, az = True):
-#        '''
-#        get the index location of a semidual point. 
-#        
-#        Point spcified by
-#        something TBD
-#        
-#        (useful for making localized states at specific sites)
-#        '''
-#        
-#        return currInd
+    #def get_SDindex(self,num, itt, az = True):
+    #    '''
+    #    get the index location of a semidual point. 
+    #    
+    #    Point spcified by
+    #    something TBD
+    #    
+    #    (useful for making localized states at specific sites)
+    #    '''
+    #    
+    #    return currInd
 
     def build_local_state(self, site):
         '''
@@ -2863,9 +2856,9 @@ class EuclideanLayout(object):
         mSizes = 100
         mColors = Amps
         
-    #    cm = pylab.cm.get_cmap('seismic')
+        #cm = pylab.cm.get_cmap('seismic')
         cm = pylab.cm.get_cmap(cmap)
-    #    cm = pylab.cm.get_cmap('RdBu')
+        #cm = pylab.cm.get_cmap('RdBu')
         
         
         vals = numpy.sort(mColors)
@@ -2896,9 +2889,9 @@ class EuclideanLayout(object):
             xs = plotPoints[:,0]
             ys = plotPoints[:,1]
             
-#            mColors_end = numpy.arange(1.,len(Amps)*2+1,1)/300
-#            print mColors_end.shape
-#            print Amps.shape
+            #mColors_end = numpy.arange(1.,len(Amps)*2+1,1)/300
+            #print mColors_end.shape
+            #print Amps.shape
             
             #plot
             pylab.sca(ax)
@@ -3017,7 +3010,7 @@ class EuclideanLayout(object):
         ax.yaxis.set_visible(False)
         ax.set_aspect('equal')
         
-#        return plotPoints
+        #return plotPoints
         return mColors
     
     def generate_root_Hamiltonian(self, roundDepth = 3, t = 1, verbose = False, sparse = False, flags = 5):
@@ -3119,17 +3112,6 @@ class EuclideanLayout(object):
         ax.set_aspect('equal')
         return
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
 if __name__=="__main__":  
     Cell = True
 #    Cell = False

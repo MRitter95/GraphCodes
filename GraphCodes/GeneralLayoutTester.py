@@ -20,8 +20,8 @@ import sys
 import scipy.io as sio
 from scipy import signal
 
-from .GeneralLayoutGenerator import GeneralLayout
-from .GeneralLayoutGenerator import TreeResonators
+from GeneralLayoutGenerator import GeneralLayout
+from GeneralLayoutGenerator import TreeResonators
 
 hyperbolicFolderPath = r'/Users/kollar2/Documents/HouckLab/HyperbolicPlanning/'
 euclideanFolderPath = r'/Users/kollar2/Documents/HouckLab/EuclideanLatticePlanning/'
@@ -30,15 +30,15 @@ if not hyperbolicFolderPath in sys.path:
 if not euclideanFolderPath in sys.path:
     sys.path.append(euclideanFolderPath)
 
-from .EuclideanLayoutGenerator2 import UnitCell
-from .EuclideanLayoutGenerator2 import EuclideanLayout
+from EuclideanLayoutGenerator2 import UnitCell
+from EuclideanLayoutGenerator2 import EuclideanLayout
 
-from .LayoutGenerator5 import PlanarLayout
+from LayoutGenerator5 import PlanarLayout
 
 
-from .GeneralLayoutGenerator import split_resonators
-from .GeneralLayoutGenerator import generate_line_graph
-from .GeneralLayoutGenerator import decorate_layout
+from GeneralLayoutGenerator import split_resonators
+from GeneralLayoutGenerator import generate_line_graph
+from GeneralLayoutGenerator import decorate_layout
 
 
 #######hyperbolic
@@ -219,16 +219,16 @@ from .GeneralLayoutGenerator import decorate_layout
 #
 #
 #######decorated hyperbolic
-#test1 = PlanarLayout(gon = 7, vertex = 3, side =1, radius_method = 'lin')
-#test1.populate(2, resonatorsOnly=False)
-##resonators = test1.get_all_resonators()
-##splitGraph = split_resonators(resonators)
-##resonators = splitGraph
-#ucell = UnitCell('PeterChain_tail', side = 1)
+test1 = PlanarLayout(gon = 7, vertex = 3, side =1, radius_method = 'lin')
+test1.populate(2, resonatorsOnly=False)
 #resonators = test1.get_all_resonators()
-#decorated_resonators = decorate_layout(resonators, ucell.resonators)
-#resonators = decorated_resonators
-#testLattice = GeneralLayout(resonators , modeType = test1.modeType, name =  'decorated_hyperbolic')
+#splitGraph = split_resonators(resonators)
+#resonators = splitGraph
+ucell = UnitCell('PeterChain_tail', side = 1)
+resonators = test1.get_all_resonators()
+decorated_resonators = decorate_layout(resonators, ucell.resonators)
+resonators = decorated_resonators
+testLattice = GeneralLayout(resonators , modeType = test1.modeType, name =  'decorated_hyperbolic')
 
 
     
@@ -258,14 +258,15 @@ ax.axis('off')
 pylab.title(testLattice.name)
 fig1.set_size_inches(5, 5)
 pylab.tight_layout()
-pylab.show()
-
+#pylab.draw()
+fig1.show()
+time.sleep(1)
 
 eigNum = 168
 eigNum = 167
 eigNum = 0
 
-pylab.figure(2)
+fig2=pylab.figure(2)
 pylab.clf()
 ax = pylab.subplot(1,2,1)
 pylab.imshow(testLattice.H,cmap = 'winter')
@@ -274,14 +275,17 @@ ax = pylab.subplot(1,2,2)
 pylab.imshow(testLattice.H - numpy.transpose(testLattice.H),cmap = 'winter')
 pylab.title('H - Htranspose')
 pylab.suptitle(testLattice.name)
-pylab.show()
+#pylab.draw()
+fig2.show()
+time.sleep(1)
 
+input('press a key')
 
 
 xs = numpy.arange(0,len(testLattice.Es),1)
 eigAmps = testLattice.Psis[:,testLattice.Eorder[eigNum]]
 
-pylab.figure(3)
+fig3=pylab.figure(3)
 pylab.clf()
 ax1 = pylab.subplot(1,2,1)
 pylab.plot(testLattice.Es, 'b.')
@@ -295,7 +299,9 @@ titleStr = 'eigenvector weight : ' + str(eigNum)
 testLattice.plot_layout_state(eigAmps, ax2, title = titleStr, colorbar = True, plot_links = True, cmap = 'Wistia')
 
 pylab.suptitle(testLattice.name)
-pylab.show()
+#pylab.draw()
+fig3.show()
+time.sleep(1)
 
 
 
@@ -365,7 +371,9 @@ pylab.title('effective (line) graph')
 pylab.suptitle(testLattice.name)
 fig5.set_size_inches(10, 5)
 pylab.tight_layout()
-pylab.show()
+#pylab.draw()
+fig5.show()
+time.sleep(1)
 
 
 
@@ -386,8 +394,12 @@ ax.set_aspect('equal')
 ax.axis('off')
 #pylab.title(testLattice.name)
 pylab.tight_layout()
+#pylab.draw()
+fig6.show()
+time.sleep(1)
+
+
+
+
+
 pylab.show()
-
-
-
-

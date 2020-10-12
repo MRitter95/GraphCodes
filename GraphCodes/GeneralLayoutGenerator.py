@@ -372,7 +372,6 @@ class GeneralLayout(object):
         
         return coords
     
-    
     ########
     #functions to generate tlattice properties
     #######
@@ -480,7 +479,7 @@ class GeneralLayout(object):
         
         #loop over the vertices.
         for vind in range(0, self.coords.shape[0]):
-#            vertex = self.coords[vind, :]
+            #vertex = self.coords[vind, :]
             vertex = numpy.round(self.coords[vind, :],self.roundDepth)
             
             startMatch = numpy.where((plusEnds == (vertex[0], vertex[1])).all(axis=1))[0]
@@ -496,8 +495,6 @@ class GeneralLayout(object):
             self.vertexDict[vind] = numpy.asarray(matchList)
         
         return self.vertexDict
-
-        
     
     def draw_SD_points(self, ax, color = 'g', edgecolor = 'k',  marker = 'o' , size = 10,  extra = False, zorder = 1):
         '''
@@ -662,17 +659,17 @@ class GeneralLayout(object):
         '''
         return [self.Es, self.Psis, self.Eorder]
     
-#    def get_SDindex(self,num, itt, az = True):
-#        '''
-#        get the index location of a semidual point. 
-#        
-#        Point spcified by
-#        something TBD
-#        
-#        (useful for making localized states at specific sites)
-#        '''
-#        
-#        return currInd
+    #def get_SDindex(self,num, itt, az = True):
+    #    '''
+    #    get the index location of a semidual point. 
+    #    
+    #    Point spcified by
+    #    something TBD
+    #    
+    #    (useful for making localized states at specific sites)
+    #    '''
+    #    
+    #    return currInd
 
     def build_local_state(self, site):
         '''
@@ -753,9 +750,9 @@ class GeneralLayout(object):
         mSizes = 100
         mColors = Amps
         
-    #    cm = pylab.cm.get_cmap('seismic')
+        #cm = pylab.cm.get_cmap('seismic')
         cm = pylab.cm.get_cmap(cmap)
-    #    cm = pylab.cm.get_cmap('RdBu')
+        #cm = pylab.cm.get_cmap('RdBu')
         
         
         vals = numpy.sort(mColors)
@@ -786,9 +783,9 @@ class GeneralLayout(object):
             xs = plotPoints[:,0]
             ys = plotPoints[:,1]
             
-#            mColors_end = numpy.arange(1.,len(Amps)*2+1,1)/300
-#            print mColors_end.shape
-#            print Amps.shape
+            #mColors_end = numpy.arange(1.,len(Amps)*2+1,1)/300
+            #print mColors_end.shape
+            #print Amps.shape
             
             #plot
             pylab.sca(ax)
@@ -907,7 +904,7 @@ class GeneralLayout(object):
         ax.yaxis.set_visible(False)
         ax.set_aspect('equal')
         
-#        return plotPoints
+        #return plotPoints
         return mColors
     
     def generate_root_Hamiltonian(self, roundDepth = 3, t = 1, verbose = False, sparse = False, flags = 5):
@@ -1009,10 +1006,6 @@ class GeneralLayout(object):
         ax.set_aspect('equal')
         return
 
-    
-    
-    
-    
 class TreeResonators(object):
     def __init__(self, isRegular = True, degree = 3, iterations = 3, side = 1, file_path = '', modeType = 'FW', cell = '', roundDepth = 3):
         if file_path != '':
@@ -1087,7 +1080,7 @@ class TreeResonators(object):
                 oldEnds = oldRes.shape[0]
                 newEnds = (self.degree-1)*oldEnds
             
-#            thetas = numpy.arange(0,2*numpy.pi,2*numpy.pi/newEnds)
+            #thetas = numpy.arange(0,2*numpy.pi,2*numpy.pi/newEnds)
             thetas = numpy.arange(0,newEnds,1)*2*numpy.pi/newEnds
             
             
@@ -1165,7 +1158,7 @@ class TreeResonators(object):
             tempRes[6,:] = [b, 0, a+b, 0]
             
             self.cellResonators = shift_resonators(tempRes, self.side/2,0) #now one end of the cell is at zeo and the other at [self.side,0]
-#            self.cellResonators = tempRes
+            #self.cellResonators = tempRes
         
         totalSize = 0
         for itt in range(1, maxItt+1):
@@ -1309,9 +1302,6 @@ class TreeResonators(object):
         pylab.scatter(x1s, y1s ,c =  color, s = size, marker = marker, edgecolors = edgecolor, zorder = zorder, alpha = alpha)
         return  
 
-    
-    
-    
 #######
 #resonator array processing functions
 #######
@@ -1367,10 +1357,9 @@ def split_resonators(resMat, splitIn = 2):
         ys = numpy.linspace(ystart, yend, splitIn+1)
         for sind in range(0, splitIn):
             newResonators[splitIn*rind + sind,:] = [xs[sind], ys[sind], xs[sind+1], ys[sind+1]]
-#            newResonators[2*rind+1,:] = [xmid, ymid, xend, yend]
+            #newResonators[2*rind+1,:] = [xmid, ymid, xend, yend]
          
     return newResonators
-    
     
 def generate_line_graph(resMat, roundDepth = 3):
     '''
@@ -1569,13 +1558,6 @@ def get_coords(resonators, roundDepth = 3):
     
     return coords
 
-
-
-
-  
-    
-    
-
 if __name__=="__main__":      
     
     #tree
@@ -1701,22 +1683,3 @@ if __name__=="__main__":
         pylab.figure(3)
         pylab.clf()
         
-    
-    
-
-    
-    
-    
-    
-    
-
-
-
-
-
-
-
-
-
-
-
