@@ -17,5 +17,5 @@ print(site_directory)
 print(package_directory)
 print(filepath)
 
-#f = open(filepath,"w")
-#f.write(package_directory)
+f = open(filepath,"w")
+f.write(package_directory)
